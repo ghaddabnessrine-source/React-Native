@@ -1,50 +1,171 @@
-# Welcome to your Expo app 👋
+# Application Todo List
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Une application mobile simple pour gérer vos tâches quotidiennes. Parfait pour les débutants qui veulent apprendre React Native !
 
-## Get started
+## Comment Lancer l'Application
 
-1. Install dependencies
+1. **Ouvrez le terminal** et naviguez vers le dossier :
+   
+   cd my-app
+   
 
-   ```bash
+2. **Installez les dépendances** :
+   
    npm install
-   ```
+   
 
-2. Start the app
+3. **Lancez l'application** :
+   
+   npm start
+  
 
-   ```bash
-   npx expo start
-   ```
+4. **Choisissez votre plateforme** :
+   - Appuyez sur `i` pour iOS
+   - Appuyez sur `a` pour Android  
+   - Appuyez sur `w` pour le navigateur web
 
-In the output, you'll find options to open the app in a
+## Fonctionnalités Principales
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Fonctions de Base
+- **Ajouter une tâche** - Entrez un titre et description
+- **Voir toutes les tâches** - Liste scrollable de vos tâches
+- **Cocher une tâche** - Marquez comme terminée
+- **Modifier une tâche** - Changez les détails
+- **Supprimer une tâche** - Enlevez les tâches inutiles
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Fonctionnalités Bonus
+- **Mode Sombre** - Basculez entre clair/sombre avec le bouton
+- **Barre de Recherche** - Trouvez rapidement vos tâches
+- **Catégories** - Organisez (Personnel, Travail, Courses, Santé)
+- **Priorités** - Faible, Moyenne, Haute avec couleurs
+- **Dates d'échéance** - Ajoutez des dates limites à vos tâches
+- **Rappels** - Configurez des rappels avant l'échéance
+- **Alertes de retard** - Tâches en retard signalées en rouge
+- **Notifications** - Messages de confirmation
+- **Animations** - Transitions fluides et interactions
 
-## Get a fresh project
+## Structure des Fichiers
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+my-app/
+├── app/
+│   └── (tabs)/
+│       └── index.tsx          # Écran principal
+├── components/
+│   └── TodoList.js           # Composant principal de la liste
+├── services/
+│   └── simpleTaskStorage.js # Service de stockage
+└── types/
+    └── task.js              # Modèle de données des tâches
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Comment Ça Marche 
 
-## Learn more
+### Les Composants Principaux
 
-To learn more about developing your project with Expo, look at the following resources:
+#### **Modèle de Tâche (`types/task.js`)**
+- Définit ce qu'est une tâche (titre, description, catégorie, etc.)
+- **NOUVEAU** : Gère les dates d'échéance et rappels
+- Contient les catégories, priorités et options de rappel
+- Fonctions utiles pour vérifier si une tâche est en retard
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+#### **Service de Stockage (`services/simpleTaskStorage.js`)**
+- Sauvegarde vos tâches localement
+- Fonctions pour ajouter, modifier, supprimer des tâches
+- Utilise le stockage local du téléphone
 
-## Join the community
+#### **Composant Principal (`components/TodoList.js`)**
+- Interface utilisateur complète et simplifiée
+- **NOUVEAU** : Modal d'ajout compact avec boutons rapides
+- Gère tous les boutons et interactions
+- Affiche les notifications et animations
 
-Join our community of developers creating universal apps.
+### Le Flux de Données
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. **Utilisateur ajoute une tâche** → `TodoList.js`
+2. **Appelle le service** → `simpleTaskStorage.js`  
+3. **Sauvegarde localement** → Téléphone/navigateur
+4. **Met à jour l'affichage** → `TodoList.js`
+
+### Le Styling
+
+- **StyleSheet** : Crée des styles pour chaque élément
+- **Mode sombre** : Styles différents pour clair/sombre
+- **Animations** : Utilise `Animated` pour les transitions
+- **NOUVEAU** : Styles pour tâches en retard et dates d'échéance
+
+## Technologies Utilisées
+
+- **React Native** - Pour créer l'application mobile
+- **Expo** - Pour simplifier le développement
+- **JavaScript** - Le langage de programmation
+- **AsyncStorage** - Pour sauvegarder les données
+
+## Comment Utiliser l'Application
+
+### Ajouter une Tâche
+1. Cliquez sur le bouton bleu "+ Add Task"
+2. Entrez un titre (obligatoire, max 50 caractères)
+3. Ajoutez une description (optionnel, max 200 caractères)
+4. **NOUVEAU** : Cliquez sur "Date" pour choisir une échéance
+5. **NOUVEAU** : Cliquez sur "Rappel" pour configurer un rappel
+6. Choisissez une catégorie et priorité
+7. Cliquez sur "Ajouter"
+
+### Gérer les Tâches
+- **Cocher** : Touchez la case à cocher
+- **Modifier** : Touchez "Edit"
+- **Supprimer** : Touchez "Delete"
+
+### Rechercher et Filtrer
+- **Rechercher** : Utilisez la barre de recherche
+- **Filtrer** : Touchez les boutons de catégorie
+
+### Mode Sombre
+- **Basculez** : Touchez l'icône en haut
+
+### Dates d'Échéance et Rappels
+- **Ajouter une date** : Cliquez sur "Date" dans le formulaire
+- **Options de date** : Aujourd'hui, Demain, Cette semaine
+- **Configurer un rappel** : Cliquez sur "Rappel"
+- **Options de rappel** : Aucun, 1 heure avant, 1 jour avant
+- **Tâches en retard** : S'affichent automatiquement en rouge
+
+## Conseils pour Débutants
+
+### Problèmes Communs
+
+**L'application ne démarre pas**
+- Vérifiez que vous êtes dans le bon dossier (`cd my-app`)
+- Assurez-vous d'avoir installé Node.js
+
+**Le mode sombre ne fonctionne pas**
+- Sur mobile : Changez les paramètres système
+- Sur web : Changez les paramètres de votre navigateur
+- Ou utilisez le bouton☀️/🌙 dans l'app
+
+**La page d'ajout est trop chargée**
+- **Déjà résolu** : L'interface est maintenant simplifiée
+- Boutons rapides pour date et rappel
+- Moins de champs et plus compact
+
+### Personnalisation
+
+**Changer les couleurs**
+- Modifiez les styles dans `TodoList.js`
+- Cherchez les styles comme `taskItem` ou `addButton`
+
+**Ajouter des catégories**
+- Éditez `types/task.js`
+- Ajoutez à `TaskCategories`
+
+**Changer les animations**
+- Modifiez les valeurs dans `Animated.timing`
+- Changez `duration` et `delay`
+
+**Ajouter des options de rappel**
+- Éditez `types/task.js`
+- Ajoutez à `ReminderTimes`
+
+
+
