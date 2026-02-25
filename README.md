@@ -83,29 +83,29 @@ A simple and feature-rich To-Do List mobile application built with React Native 
 
 ## 🖼 Screenshots
 
-### Home Screen
-![Home Screen](assets/images/1.png)
-
-### Add Task
-![Add Task](assets/images/2.png)
-
-### Task List
-![Task List](assets/images/screenshot3.png)
-
-### Edit Task
-![Edit Task](assets/images/screenshot4.png)
-
-### Categories
-![Categories](assets/images/screenshot5.png)
-
-### Priorities
-![Priorities](assets/images/screenshot6.png)
-
-### Due Date & Reminder
-![Due Date & Reminder](assets/images/screenshot7.png)
+### light Mode
+![light Mode](assets/images/1.jpeg)
 
 ### Dark Mode
-![Dark Mode](assets/images/screenshot8.png)
+![Dark Mode](assets/images/2.jpeg)
 
-### Notifications
-![Notifications](assets/images/screenshot9.png)
+### Delete Task
+![Delete Task](assets/images/3.jpeg)
+
+### Task Deleted
+![Task Deleted](assets/images/4.jpeg)
+
+### Edit Task
+![Edit Task](assets/images/5.jpeg)
+
+### Task Updated
+![Task Updated](assets/images/6.jpeg)
+
+### Add New Task
+![Add New Task](assets/images/7.jpeg)
+
+### Task created
+![Task created](assets/images/8.jpeg)
+
+### Search Bar
+![Search Bar](assets/images/9.jpeg)
