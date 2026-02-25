@@ -44,56 +44,6 @@ A simple and feature-rich To-Do List mobile application built with React Native 
 - **Notifications** - Confirmation messages
 - **Animations** - Smooth transitions and interactions
 
-## File Structure
-
-```
-my-app/
-├── app/
-│   └── (tabs)/
-│       └── index.tsx          # Main screen
-├── components/
-│   └── TodoList.js           # Main todo list component
-├── services/
-│   └── simpleTaskStorage.js # Storage service
-└── types/
-    └── task.js              # Task data model
-```
-
-## How It Works 
-
-### Main Components
-
-#### **Task Model (`types/task.js`)**
-- Defines what a task is (title, description, category, etc.)
-- **NEW**: Manages due dates and reminders
-- Contains categories, priorities, and reminder options
-- Utility functions to check if task is overdue
-
-#### **Storage Service (`services/simpleTaskStorage.js`)**
-- Saves tasks locally
-- Functions to add, edit, delete tasks
-- Uses local device storage
-
-#### **Main Component (`components/TodoList.js`)**
-- Complete and simplified user interface
-- **NEW**: Compact add modal with quick buttons
-- Manages all buttons and interactions
-- Shows notifications and animations
-
-### Data Flow
-
-1. **User adds task** → `TodoList.js`
-2. **Calls service** → `simpleTaskStorage.js`  
-3. **Saves locally** → Device/browser
-4. **Updates display** → `TodoList.js`
-
-### Styling
-
-- **StyleSheet**: Creates styles for each element
-- **Dark Mode**: Different styles for light/dark
-- **Animations**: Uses `Animated` for transitions
-- **NEW**: Styles for overdue tasks and due dates
-
 ## Technologies Used
 
 - **React Native** - For creating mobile apps
@@ -107,8 +57,8 @@ my-app/
 1. Click the blue "+ Add Task" button
 2. Enter a title (required, max 50 characters)
 3. Add a description (optional, max 200 characters)
-4. **NEW**: Click "Date" to choose a due date
-5. **NEW**: Click "Reminder" to configure a reminder
+4. Click "Date" to choose a due date
+5. Click "Reminder" to configure a reminder
 6. Choose a category and priority
 7. Click "Add"
 
@@ -131,42 +81,4 @@ my-app/
 - **Reminder options**: None, 1 hour before, 1 day before
 - **Overdue tasks**: Automatically shown in red
 
-## Tips for Beginners
 
-### Common Problems
-
-**App won't start?**
-- Make sure you're in the right directory (`cd my-app`)
-- Ensure you have Node.js installed
-
-**Dark mode not working?**
-- On mobile: Change system settings
-- On web: Change browser settings
-- Or use the button in the app
-
-**Add page too crowded?**
-- **Already solved**: Interface is now simplified
-- Quick buttons for date and reminder
-- Fewer fields and more compact
-
-### Customization
-
-**Change colors**
-- Modify styles in `TodoList.js`
-- Look for styles like `taskItem` or `addButton`
-
-**Add categories**
-- Edit `types/task.js`
-- Add to `TaskCategories`
-
-**Change animations**
-- Modify values in `Animated.timing`
-- Change `duration` and `delay`
-
-**Add reminder options**
-- Edit `types/task.js`
-- Add to `ReminderTimes`
-
-
-
-# React-Native
