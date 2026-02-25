@@ -1,171 +1,171 @@
-# Application Todo List
+# Todo List Mobile App
 
-Une application mobile simple pour gérer vos tâches quotidiennes. Parfait pour les débutants qui veulent apprendre React Native !
+A simple and feature-rich To-Do List mobile application built with React Native and Expo.
 
-## Comment Lancer l'Application
+## How to Run the Application
 
-1. **Ouvrez le terminal** et naviguez vers le dossier :
+1. **Open the terminal** and navigate to the project directory:
    
    cd my-app
    
 
-2. **Installez les dépendances** :
+2. **Install dependencies**:
    
    npm install
    
 
-3. **Lancez l'application** :
+3. **Start the application**:
    
    npm start
   
 
-4. **Choisissez votre plateforme** :
-   - Appuyez sur `i` pour iOS
-   - Appuyez sur `a` pour Android  
-   - Appuyez sur `w` pour le navigateur web
+4. **Choose your platform**:
+   - Press `i` for iOS
+   - Press `a` for Android  
+   - Press `w` for web browser
 
-## Fonctionnalités Principales
+## Main Features
 
-### Fonctions de Base
-- **Ajouter une tâche** - Entrez un titre et description
-- **Voir toutes les tâches** - Liste scrollable de vos tâches
-- **Cocher une tâche** - Marquez comme terminée
-- **Modifier une tâche** - Changez les détails
-- **Supprimer une tâche** - Enlevez les tâches inutiles
+### Basic Features
+- **Add tasks** - Enter title and description
+- **View all tasks** - Scrollable task list
+- **Complete tasks** - Mark as done with checkbox
+- **Edit tasks** - Modify task details
+- **Delete tasks** - Remove unwanted tasks
 
-### Fonctionnalités Bonus
-- **Mode Sombre** - Basculez entre clair/sombre avec le bouton
-- **Barre de Recherche** - Trouvez rapidement vos tâches
-- **Catégories** - Organisez (Personnel, Travail, Courses, Santé)
-- **Priorités** - Faible, Moyenne, Haute avec couleurs
-- **Dates d'échéance** - Ajoutez des dates limites à vos tâches
-- **Rappels** - Configurez des rappels avant l'échéance
-- **Alertes de retard** - Tâches en retard signalées en rouge
-- **Notifications** - Messages de confirmation
-- **Animations** - Transitions fluides et interactions
+### Bonus Features
+- **Dark Mode** - Toggle between light/dark with button
+- **Search Bar** - Find tasks quickly
+- **Categories** - Organize (Personal, Work, Shopping, Health, Other)
+- **Priorities** - Low, Medium, High with colors
+- **Due Dates** - Add deadlines to your tasks
+- **Reminders** - Configure reminders before due date
+- **Overdue Alerts** - Overdue tasks highlighted in red
+- **Notifications** - Confirmation messages
+- **Animations** - Smooth transitions and interactions
 
-## Structure des Fichiers
+## File Structure
 
 ```
 my-app/
 ├── app/
 │   └── (tabs)/
-│       └── index.tsx          # Écran principal
+│       └── index.tsx          # Main screen
 ├── components/
-│   └── TodoList.js           # Composant principal de la liste
+│   └── TodoList.js           # Main todo list component
 ├── services/
-│   └── simpleTaskStorage.js # Service de stockage
+│   └── simpleTaskStorage.js # Storage service
 └── types/
-    └── task.js              # Modèle de données des tâches
+    └── task.js              # Task data model
 ```
 
-## Comment Ça Marche 
+## How It Works 
 
-### Les Composants Principaux
+### Main Components
 
-#### **Modèle de Tâche (`types/task.js`)**
-- Définit ce qu'est une tâche (titre, description, catégorie, etc.)
-- **NOUVEAU** : Gère les dates d'échéance et rappels
-- Contient les catégories, priorités et options de rappel
-- Fonctions utiles pour vérifier si une tâche est en retard
+#### **Task Model (`types/task.js`)**
+- Defines what a task is (title, description, category, etc.)
+- **NEW**: Manages due dates and reminders
+- Contains categories, priorities, and reminder options
+- Utility functions to check if task is overdue
 
-#### **Service de Stockage (`services/simpleTaskStorage.js`)**
-- Sauvegarde vos tâches localement
-- Fonctions pour ajouter, modifier, supprimer des tâches
-- Utilise le stockage local du téléphone
+#### **Storage Service (`services/simpleTaskStorage.js`)**
+- Saves tasks locally
+- Functions to add, edit, delete tasks
+- Uses local device storage
 
-#### **Composant Principal (`components/TodoList.js`)**
-- Interface utilisateur complète et simplifiée
-- **NOUVEAU** : Modal d'ajout compact avec boutons rapides
-- Gère tous les boutons et interactions
-- Affiche les notifications et animations
+#### **Main Component (`components/TodoList.js`)**
+- Complete and simplified user interface
+- **NEW**: Compact add modal with quick buttons
+- Manages all buttons and interactions
+- Shows notifications and animations
 
-### Le Flux de Données
+### Data Flow
 
-1. **Utilisateur ajoute une tâche** → `TodoList.js`
-2. **Appelle le service** → `simpleTaskStorage.js`  
-3. **Sauvegarde localement** → Téléphone/navigateur
-4. **Met à jour l'affichage** → `TodoList.js`
+1. **User adds task** → `TodoList.js`
+2. **Calls service** → `simpleTaskStorage.js`  
+3. **Saves locally** → Device/browser
+4. **Updates display** → `TodoList.js`
 
-### Le Styling
+### Styling
 
-- **StyleSheet** : Crée des styles pour chaque élément
-- **Mode sombre** : Styles différents pour clair/sombre
-- **Animations** : Utilise `Animated` pour les transitions
-- **NOUVEAU** : Styles pour tâches en retard et dates d'échéance
+- **StyleSheet**: Creates styles for each element
+- **Dark Mode**: Different styles for light/dark
+- **Animations**: Uses `Animated` for transitions
+- **NEW**: Styles for overdue tasks and due dates
 
-## Technologies Utilisées
+## Technologies Used
 
-- **React Native** - Pour créer l'application mobile
-- **Expo** - Pour simplifier le développement
-- **JavaScript** - Le langage de programmation
-- **AsyncStorage** - Pour sauvegarder les données
+- **React Native** - For creating mobile apps
+- **Expo** - To simplify development
+- **JavaScript** - The programming language
+- **AsyncStorage** - For saving data
 
-## Comment Utiliser l'Application
+## How to Use the App
 
-### Ajouter une Tâche
-1. Cliquez sur le bouton bleu "+ Add Task"
-2. Entrez un titre (obligatoire, max 50 caractères)
-3. Ajoutez une description (optionnel, max 200 caractères)
-4. **NOUVEAU** : Cliquez sur "Date" pour choisir une échéance
-5. **NOUVEAU** : Cliquez sur "Rappel" pour configurer un rappel
-6. Choisissez une catégorie et priorité
-7. Cliquez sur "Ajouter"
+### Add a Task
+1. Click the blue "+ Add Task" button
+2. Enter a title (required, max 50 characters)
+3. Add a description (optional, max 200 characters)
+4. **NEW**: Click "Date" to choose a due date
+5. **NEW**: Click "Reminder" to configure a reminder
+6. Choose a category and priority
+7. Click "Add"
 
-### Gérer les Tâches
-- **Cocher** : Touchez la case à cocher
-- **Modifier** : Touchez "Edit"
-- **Supprimer** : Touchez "Delete"
+### Manage Tasks
+- **Complete**: Touch the checkbox
+- **Edit**: Touch "Edit"
+- **Delete**: Touch "Delete"
 
-### Rechercher et Filtrer
-- **Rechercher** : Utilisez la barre de recherche
-- **Filtrer** : Touchez les boutons de catégorie
+### Search and Filter
+- **Search**: Use the search bar
+- **Filter**: Touch the category buttons
 
-### Mode Sombre
-- **Basculez** : Touchez l'icône en haut
+### Dark Mode
+- **Toggle**: Touch the icon at the top
 
-### Dates d'Échéance et Rappels
-- **Ajouter une date** : Cliquez sur "Date" dans le formulaire
-- **Options de date** : Aujourd'hui, Demain, Cette semaine
-- **Configurer un rappel** : Cliquez sur "Rappel"
-- **Options de rappel** : Aucun, 1 heure avant, 1 jour avant
-- **Tâches en retard** : S'affichent automatiquement en rouge
+### Due Dates and Reminders
+- **Add a date**: Click "Date" in the form
+- **Date options**: Today, Tomorrow, This week
+- **Configure reminder**: Click "Reminder"
+- **Reminder options**: None, 1 hour before, 1 day before
+- **Overdue tasks**: Automatically shown in red
 
-## Conseils pour Débutants
+## Tips for Beginners
 
-### Problèmes Communs
+### Common Problems
 
-**L'application ne démarre pas**
-- Vérifiez que vous êtes dans le bon dossier (`cd my-app`)
-- Assurez-vous d'avoir installé Node.js
+**App won't start?**
+- Make sure you're in the right directory (`cd my-app`)
+- Ensure you have Node.js installed
 
-**Le mode sombre ne fonctionne pas**
-- Sur mobile : Changez les paramètres système
-- Sur web : Changez les paramètres de votre navigateur
-- Ou utilisez le bouton☀️/🌙 dans l'app
+**Dark mode not working?**
+- On mobile: Change system settings
+- On web: Change browser settings
+- Or use the button in the app
 
-**La page d'ajout est trop chargée**
-- **Déjà résolu** : L'interface est maintenant simplifiée
-- Boutons rapides pour date et rappel
-- Moins de champs et plus compact
+**Add page too crowded?**
+- **Already solved**: Interface is now simplified
+- Quick buttons for date and reminder
+- Fewer fields and more compact
 
-### Personnalisation
+### Customization
 
-**Changer les couleurs**
-- Modifiez les styles dans `TodoList.js`
-- Cherchez les styles comme `taskItem` ou `addButton`
+**Change colors**
+- Modify styles in `TodoList.js`
+- Look for styles like `taskItem` or `addButton`
 
-**Ajouter des catégories**
-- Éditez `types/task.js`
-- Ajoutez à `TaskCategories`
+**Add categories**
+- Edit `types/task.js`
+- Add to `TaskCategories`
 
-**Changer les animations**
-- Modifiez les valeurs dans `Animated.timing`
-- Changez `duration` et `delay`
+**Change animations**
+- Modify values in `Animated.timing`
+- Change `duration` and `delay`
 
-**Ajouter des options de rappel**
-- Éditez `types/task.js`
-- Ajoutez à `ReminderTimes`
+**Add reminder options**
+- Edit `types/task.js`
+- Add to `ReminderTimes`
 
 
 

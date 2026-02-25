@@ -67,13 +67,13 @@ export class Task {
   // Get reminder display text
   getReminderText() {
     const reminderTexts = {
-      [ReminderTimes.NONE]: 'Aucun rappel',
-      [ReminderTimes.ON_DUE]: 'À la date limite',
-      [ReminderTimes.ONE_HOUR_BEFORE]: '1 heure avant',
-      [ReminderTimes.ONE_DAY_BEFORE]: '1 jour avant',
-      [ReminderTimes.ONE_WEEK_BEFORE]: '1 semaine avant'
+      [ReminderTimes.NONE]: 'No reminder',
+      [ReminderTimes.ON_DUE]: 'On due date',
+      [ReminderTimes.ONE_HOUR_BEFORE]: '1 hour before',
+      [ReminderTimes.ONE_DAY_BEFORE]: '1 day before',
+      [ReminderTimes.ONE_WEEK_BEFORE]: '1 week before'
     };
-    return reminderTexts[this.reminder] || 'Aucun rappel';
+    return reminderTexts[this.reminder] || 'No reminder';
   }
 }
 
@@ -205,13 +205,13 @@ export const TaskUtils = {
   // Format reminder message
   formatReminderMessage(task) {
     const dueDate = new Date(task.dueDate);
-    const formattedDate = dueDate.toLocaleDateString('fr-FR', {
+    const formattedDate = dueDate.toLocaleDateString('en-US', {
       day: 'numeric',
       month: 'short',
       hour: '2-digit',
       minute: '2-digit'
     });
     
-    return `Rappel: "${task.title}" est dû le ${formattedDate}`;
+    return `Reminder: "${task.title}" is due on ${formattedDate}`;
   }
 };
