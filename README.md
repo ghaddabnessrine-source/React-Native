@@ -81,4 +81,31 @@ A simple and feature-rich To-Do List mobile application built with React Native 
 - **Reminder options**: None, 1 hour before, 1 day before
 - **Overdue tasks**: Automatically shown in red
 
+## 🖼 Screenshots
 
+### Home Screen
+![Home Screen](assets/images/1.png)
+
+### Add Task
+![Add Task](assets/images/2.png)
+
+### Task List
+![Task List](assets/images/screenshot3.png)
+
+### Edit Task
+![Edit Task](assets/images/screenshot4.png)
+
+### Categories
+![Categories](assets/images/screenshot5.png)
+
+### Priorities
+![Priorities](assets/images/screenshot6.png)
+
+### Due Date & Reminder
+![Due Date & Reminder](assets/images/screenshot7.png)
+
+### Dark Mode
+![Dark Mode](assets/images/screenshot8.png)
+
+### Notifications
+![Notifications](assets/images/screenshot9.png)

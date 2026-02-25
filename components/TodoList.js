@@ -263,7 +263,9 @@ const TodoList = () => {
         renderItem={renderTaskItem}
         keyExtractor={item => item.id}
         style={todoStyles.taskList}
+        contentContainerStyle={todoStyles.taskListContent}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
         ListEmptyComponent={
           <Animated.View style={{ opacity: fadeAnim }}>
             <Text style={[todoStyles.emptyText, isDarkMode && todoStyles.darkEmptyText]}>

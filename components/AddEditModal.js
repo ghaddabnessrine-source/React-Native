@@ -79,16 +79,18 @@ const AddEditModal = ({
   // --- Reminder picker compatible web & mobile ---
   const showReminderPicker = () => {
     if (Platform.OS === 'web') {
-      const reminder = window.prompt('Reminder: None, 1 hour before, 1 day before', 'None');
+      const reminder = window.prompt('Reminder: None, On due date, 1 hour before, 1 day before, 1 week before', 'None');
       const reminderMap = {
         'None': ReminderTimes.NONE,
+        'On due date': ReminderTimes.ON_DUE,
         '1 hour before': ReminderTimes.ONE_HOUR_BEFORE,
         '1 day before': ReminderTimes.ONE_DAY_BEFORE,
+        '1 week before': ReminderTimes.ONE_WEEK_BEFORE,
       };
       const selectedValue = reminderMap[reminder] || ReminderTimes.NONE;
       onReminderChange(selectedValue);
     } else {
-      const reminderOptions = ['None', '1 hour before', '1 day before'];
+      const reminderOptions = ['None', 'On due date', '1 hour before', '1 day before', '1 week before'];
       Alert.alert(
         'Reminder',
         'Choose when to remind',
@@ -97,8 +99,10 @@ const AddEditModal = ({
           onPress: () => {
             const reminderMap = {
               'None': ReminderTimes.NONE,
+              'On due date': ReminderTimes.ON_DUE,
               '1 hour before': ReminderTimes.ONE_HOUR_BEFORE,
-              '1 day before': ReminderTimes.ONE_DAY_BEFORE
+              '1 day before': ReminderTimes.ONE_DAY_BEFORE,
+              '1 week before': ReminderTimes.ONE_WEEK_BEFORE
             };
             const selectedValue = reminderMap[option] || ReminderTimes.NONE;
             onReminderChange(selectedValue);
@@ -113,10 +117,14 @@ const AddEditModal = ({
     switch (selectedReminder) {
       case ReminderTimes.NONE:
         return 'No reminder';
+      case ReminderTimes.ON_DUE:
+        return 'On due date';
       case ReminderTimes.ONE_HOUR_BEFORE:
         return '1 hour before';
       case ReminderTimes.ONE_DAY_BEFORE:
         return '1 day before';
+      case ReminderTimes.ONE_WEEK_BEFORE:
+        return '1 week before';
       default:
         return 'No reminder';
     }

@@ -12,6 +12,10 @@ export const todoStyles = StyleSheet.create({
   taskList: {
     flex: 1,
   },
+  taskListContent: {
+    paddingBottom: 100, // Add padding for the floating add button
+    flexGrow: 1,
+  },
   emptyText: {
     textAlign: 'center',
     color: '#999',
