@@ -1,4 +1,5 @@
 import { TaskUtils } from '../types/task.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const STORAGE_KEY = 'todo_tasks';
 
@@ -8,15 +9,12 @@ class SimpleStorage {
     try {
       const jsonValue = JSON.stringify(tasks);
       
-      // For React Native, we'll use a simple in-memory fallback
-      // In a real app, you'd want to use AsyncStorage or SecureStore
       if (typeof window !== 'undefined' && window.localStorage) {
         // Web fallback
         localStorage.setItem(STORAGE_KEY, jsonValue);
       } else {
-        // React Native - store in memory (will be lost on app restart)
-        // This is a temporary solution for demo purposes
-        global.todoTasks = jsonValue;
+        // React Native - use AsyncStorage
+        await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
       }
       return true;
     } catch (error) {
@@ -33,8 +31,8 @@ class SimpleStorage {
         // Web fallback
         jsonValue = localStorage.getItem(STORAGE_KEY);
       } else {
-        // React Native - get from memory
-        jsonValue = global.todoTasks || null;
+        // React Native - use AsyncStorage
+        jsonValue = await AsyncStorage.getItem(STORAGE_KEY);
       }
       
       return jsonValue != null ? JSON.parse(jsonValue) : [];
@@ -50,8 +48,8 @@ class SimpleStorage {
         // Web fallback
         localStorage.removeItem(STORAGE_KEY);
       } else {
-        // React Native - clear memory
-        global.todoTasks = null;
+        // React Native - use AsyncStorage
+        await AsyncStorage.removeItem(STORAGE_KEY);
       }
       return true;
     } catch (error) {

@@ -13,17 +13,111 @@ import {
   TouchableOpacity,
   Text
 } from 'react-native';
-import { TaskStorage } from '../services/simpleTaskStorage.js';
 import { TaskCategories, TaskPriority, TaskUtils, ReminderTimes } from '../types/task.js';
 import { useTaskOperations } from '../hooks/useTaskOperations.js';
 import { useAnimations } from '../hooks/useAnimations.js';
-import { todoStyles } from '../styles/todoStyles.js';
 import TaskItem from './TaskItem.js';
 import AddEditModal from './AddEditModal.js';
 import Header from './Header.js';
 import SearchBar from './SearchBar.js';
 import FilterBar from './FilterBar.js';
 import Notification from './Notification.js';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+  },
+  darkContainer: {
+    backgroundColor: '#1a1a1a',
+  },
+  taskList: {
+    flex: 1,
+  },
+  taskListContent: {
+    paddingBottom: 100,
+    flexGrow: 1,
+  },
+  emptyText: {
+    textAlign: 'center',
+    color: '#999',
+    fontSize: 16,
+    marginTop: 50,
+  },
+  darkEmptyText: {
+    color: '#666',
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+    backgroundColor: '#007AFF',
+    padding: 15,
+    borderRadius: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  addButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
+
+export const inputStyles = StyleSheet.create({
+  input: {
+    backgroundColor: '#f8f9fa',
+    padding: 16,
+    borderRadius: 8,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#dee2e6',
+    fontSize: 16,
+    color: '#212529',
+    ...Platform.select({
+      web: {
+        outlineStyle: 'none',
+        outlineWidth: 0,
+        outlineColor: 'transparent',
+      },
+    }),
+  },
+  darkInput: {
+    backgroundColor: '#343a40',
+    borderColor: '#495057',
+    color: '#f8f9fa',
+  },
+  textArea: {
+    height: 80,
+    textAlignVertical: 'top',
+  },
+});
+
+export const priorityStyles = StyleSheet.create({
+  priorityText: {
+    fontSize: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+    fontWeight: '600',
+  },
+  priorityLOW: {
+    backgroundColor: '#d4edda',
+    color: '#155724',
+  },
+  priorityMEDIUM: {
+    backgroundColor: '#fff3cd',
+    color: '#856404',
+  },
+  priorityHIGH: {
+    backgroundColor: '#f8d7da',
+    color: '#721c24',
+  },
+});
 
 const TodoList = () => {
   const colorScheme = useColorScheme();
@@ -166,28 +260,6 @@ const TodoList = () => {
     return TaskUtils.sortByPriority(TaskUtils.sortByDate(filtered));
   };
 
-  // Enhanced search with debouncing
-  const [searchTimeout, setSearchTimeout] = useState(null);
-  
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    
-    // Clear existing timeout
-    if (searchTimeout) {
-      clearTimeout(searchTimeout);
-    }
-    
-    // Set new timeout for debounced search
-    const timeout = setTimeout(() => {
-      // Search is already handled by getFilteredTasks
-    }, 300);
-    
-    setSearchTimeout(timeout);
-  };
-
-  const handleClearSearch = () => {
-    handleSearch('');
-  };
 
   const handleTaskToggle = async (taskId) => {
     const updatedTask = await toggleTaskComplete(taskId);
@@ -234,7 +306,7 @@ const TodoList = () => {
   };
 
   return (
-    <Animated.View style={[todoStyles.container, isDarkMode && todoStyles.darkContainer, { opacity: fadeAnim }]}>
+    <Animated.View style={[styles.container, isDarkMode && styles.darkContainer, { opacity: fadeAnim }]}>
       {/* Header */}
       <Header
         isDarkMode={isDarkMode}
@@ -245,8 +317,8 @@ const TodoList = () => {
       <SearchBar
         searchQuery={searchQuery}
         isDarkMode={isDarkMode}
-        onSearchChange={handleSearch}
-        onClearSearch={handleClearSearch}
+        onSearchChange={setSearchQuery}
+        onClearSearch={() => setSearchQuery('')}
       />
       
       {/* Filter Bar */}
@@ -262,13 +334,13 @@ const TodoList = () => {
         data={getFilteredTasks()}
         renderItem={renderTaskItem}
         keyExtractor={item => item.id}
-        style={todoStyles.taskList}
-        contentContainerStyle={todoStyles.taskListContent}
+        style={styles.taskList}
+        contentContainerStyle={styles.taskListContent}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         ListEmptyComponent={
           <Animated.View style={{ opacity: fadeAnim }}>
-            <Text style={[todoStyles.emptyText, isDarkMode && todoStyles.darkEmptyText]}>
+            <Text style={[styles.emptyText, isDarkMode && styles.darkEmptyText]}>
               {searchQuery || filterCategory !== 'all' 
                 ? '🔍 No tasks found' 
                 : '📝 No tasks yet. Add your first task!'}
@@ -280,14 +352,14 @@ const TodoList = () => {
       {/* Animated Add Button */}
       <Animated.View style={{ transform: [{ scale: addButtonScale }] }}>
         <TouchableOpacity
-          style={todoStyles.addButton}
+          style={styles.addButton}
           onPress={() => {
             animateAddButton();
             setShowAddModal(true);
           }}
           activeOpacity={0.8}
         >
-          <Text style={todoStyles.addButtonText}>+ Add Task</Text>
+          <Text style={styles.addButtonText}>+ Add Task</Text>
         </TouchableOpacity>
       </Animated.View>
       

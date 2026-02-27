@@ -14,15 +14,15 @@ import {
 } from 'react-native';
 import { TaskCategories, TaskPriority, ReminderTimes } from '../types/task';
 
-const AddEditModal = ({ 
-  visible, 
-  isEdit, 
-  isDarkMode, 
-  newTaskTitle, 
-  newTaskDescription, 
-  selectedCategory, 
-  selectedPriority, 
-  selectedDueDate, 
+const AddEditModal = ({
+  visible,
+  isEdit,
+  isDarkMode,
+  newTaskTitle,
+  newTaskDescription,
+  selectedCategory,
+  selectedPriority,
+  selectedDueDate,
   selectedReminder,
   onTitleChange,
   onDescriptionChange,
@@ -45,7 +45,7 @@ const AddEditModal = ({
         case 'tomorrow': dueDate.setDate(dueDate.getDate() + 1); break;
         case 'this week': dueDate.setDate(dueDate.getDate() + 7); break;
         case 'custom':
-          const custom = window.prompt('Enter date (YYYY-MM-DD)', dueDate.toISOString().slice(0,10));
+          const custom = window.prompt('Enter date (YYYY-MM-DD)', dueDate.toISOString().slice(0, 10));
           if (custom) dueDate = new Date(custom);
           break;
         default: return;
@@ -57,19 +57,25 @@ const AddEditModal = ({
         'Choose how to set the due date',
         [
           { text: 'Today', onPress: () => onDueDateChange(new Date().toISOString()) },
-          { text: 'Tomorrow', onPress: () => {
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            onDueDateChange(tomorrow.toISOString());
-          }},
-          { text: 'This week', onPress: () => {
-            const nextWeek = new Date();
-            nextWeek.setDate(nextWeek.getDate() + 7);
-            onDueDateChange(nextWeek.toISOString());
-          }},
-          { text: 'Custom date', onPress: () => {
-            onDueDateChange(new Date().toISOString());
-          }},
+          {
+            text: 'Tomorrow', onPress: () => {
+              const tomorrow = new Date();
+              tomorrow.setDate(tomorrow.getDate() + 1);
+              onDueDateChange(tomorrow.toISOString());
+            }
+          },
+          {
+            text: 'This week', onPress: () => {
+              const nextWeek = new Date();
+              nextWeek.setDate(nextWeek.getDate() + 7);
+              onDueDateChange(nextWeek.toISOString());
+            }
+          },
+          {
+            text: 'Custom date', onPress: () => {
+              onDueDateChange(new Date().toISOString());
+            }
+          },
           { text: 'Cancel', style: 'cancel' }
         ]
       );
@@ -148,7 +154,7 @@ const AddEditModal = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.modalOverlay}>
           <View style={[styles.modalContent, isDarkMode && styles.darkModalContent]}>
-            <ScrollView 
+            <ScrollView
               style={styles.scrollView}
               showsVerticalScrollIndicator={false}
               keyboardShouldPersistTaps="handled"
@@ -156,17 +162,17 @@ const AddEditModal = ({
               <Text style={[styles.modalTitle, isDarkMode && styles.darkModalTitle]}>
                 {isEdit ? 'Edit Task' : 'Add New Task'}
               </Text>
-            
-             <TextInput
-  style={[styles.input, isDarkMode && styles.darkInput, Platform.OS === 'web' && styles.webInput]}
-  placeholder="Task title"
-  placeholderTextColor={isDarkMode ? '#999' : '#666'}
-  value={newTaskTitle}
-  onChangeText={onTitleChange}
-  maxLength={50}
-  autoFocus={!isEdit}
-/>
-            
+
+              <TextInput
+                style={[styles.input, isDarkMode && styles.darkInput, Platform.OS === 'web' && styles.webInput]}
+                placeholder="Task title"
+                placeholderTextColor={isDarkMode ? '#999' : '#666'}
+                value={newTaskTitle}
+                onChangeText={onTitleChange}
+                maxLength={50}
+                autoFocus={!isEdit}
+              />
+
               <TextInput
                 style={[styles.input, styles.textArea, isDarkMode && styles.darkInput]}
                 placeholder="Description (optional)"
@@ -181,7 +187,7 @@ const AddEditModal = ({
                   web: { caretColor: '#007AFF' }
                 })}
               />
-            
+
               <View style={styles.quickActionsContainer}>
                 <TouchableOpacity
                   style={[styles.quickActionButton, isDarkMode && styles.darkQuickActionButton]}
@@ -191,7 +197,7 @@ const AddEditModal = ({
                     📅 Date
                   </Text>
                 </TouchableOpacity>
-              
+
                 <TouchableOpacity
                   style={[styles.quickActionButton, isDarkMode && styles.darkQuickActionButton]}
                   onPress={showReminderPicker}
@@ -201,7 +207,7 @@ const AddEditModal = ({
                   </Text>
                 </TouchableOpacity>
               </View>
-            
+
               {selectedDueDate && (
                 <View style={[styles.selectedInfoContainer, isDarkMode && styles.darkSelectedInfoContainer]}>
                   <Text style={[styles.selectedInfoText, isDarkMode && styles.darkSelectedInfoText]}>
@@ -209,13 +215,13 @@ const AddEditModal = ({
                   </Text>
                 </View>
               )}
-            
+
               <View style={[styles.selectedInfoContainer, isDarkMode && styles.darkSelectedInfoContainer]}>
                 <Text style={[styles.selectedInfoText, isDarkMode && styles.darkSelectedInfoText]}>
                   🔔 Reminder: {getReminderDisplayText()}
                 </Text>
               </View>
-            
+
               <View style={styles.categoryContainer}>
                 {Object.values(TaskCategories).map(category => (
                   <TouchableOpacity
@@ -237,7 +243,7 @@ const AddEditModal = ({
                   </TouchableOpacity>
                 ))}
               </View>
-            
+
               <View style={styles.priorityContainer}>
                 {Object.values(TaskPriority).map(priority => (
                   <TouchableOpacity
@@ -259,7 +265,7 @@ const AddEditModal = ({
                   </TouchableOpacity>
                 ))}
               </View>
-            
+
               <View style={styles.modalActions}>
                 <TouchableOpacity
                   style={[styles.modalButton, styles.cancelButton, isDarkMode && styles.darkCancelButton]}
@@ -267,7 +273,7 @@ const AddEditModal = ({
                 >
                   <Text style={styles.cancelButtonText}>Cancel</Text>
                 </TouchableOpacity>
-              
+
                 <TouchableOpacity
                   style={[styles.modalButton, styles.saveButton]}
                   onPress={onSave}
